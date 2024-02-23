@@ -18,9 +18,7 @@ try {
     const port:Number = app.get("PORT");
     const baseUrl:String =app.get("BASE_URL");
     server.listen(port ,():void => {
-        console.log("listening");
-    });
+        console.log("listening");});
 } catch (error) {
     console.log(error);
 }
-export default server;
