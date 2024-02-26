@@ -29,7 +29,7 @@ if(!mongodbURI) {
     process.exit(1);
 }
 mongoose.connect(mongodbURI,{}).then(()=>{console.log("Mongoose connected")
-}).catch(err=>{console.log("Error connecting to Mongo")});
+});
 //start the server
 try {
     const port:Number = app.get("PORT");

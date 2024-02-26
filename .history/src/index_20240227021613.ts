@@ -5,7 +5,6 @@ import cors from "cors";
 import bodyParser from 'body-parser';
 import dotenv from "dotenv";
 import router from './routes/routes';
-import mongoose from 'mongoose';
 const app:Express = express();
 const server = http.createServer(app)
 
@@ -24,12 +23,7 @@ app.set("BASE_URL","localhost");
 //MongDB connection
 
 const mongodbURI=process.env.MONGO_DB_URI
-if(!mongodbURI) {
-    console.error("Mongo URI not defined");
-    process.exit(1);
-}
-mongoose.connect(mongodbURI,{}).then(()=>{console.log("Mongoose connected")
-}).catch(err=>{console.log("Error connecting to Mongo")});
+if(!mongodbURI) {}
 //start the server
 try {
     const port:Number = app.get("PORT");

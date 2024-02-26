@@ -4,8 +4,8 @@ import { Router } from "express";
 import helloRouter from "./hello.routes";
 
 const router =Router();
-// router.use('/user',userRouter);
+router.use('/user',userRouter);
 
-// router.use('/tweet',tweetRouter);
+router.use('/tweet',tweetRouter);
 router.use('/hello',helloRouter);
 export default router;
