@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTweetController = exports.updateTweetController = exports.createTweetController = exports.getTweetController = void 0;
 const tweet_repositories_1 = require("../repositories/tweet.repositories");
+const user_repositories_1 = require("../repositories/user.repositories");
 const getTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tweetId = req.params.tweetId;
     try {
@@ -31,12 +32,18 @@ exports.getTweetController = getTweetController;
 const createTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tweet = req.body;
     try {
-        const sucess = yield (0, tweet_repositories_1.createTweetRepo)(tweet);
-        if (sucess) {
-            res.status(200).json({ data: sucess });
+        const success = yield (0, tweet_repositories_1.createTweetRepo)(tweet);
+        if (success) {
+            const userUpdateSuccess = yield (0, user_repositories_1.updateUserWithTweetIdRepo)(tweet.adminId, tweet.tweetid);
+            if (userUpdateSuccess) {
+                res.status(200).json({ data: tweet });
+            }
+            else {
+                res.status(500).json({ error: "User Not Updated" });
+            }
         }
         else {
-            res.status(500).json({ error: "Tweet Not Unable to create new tweet" });
+            res.status(500).json({ error: "Tweet Not Created" });
         }
     }
     catch (error) {
@@ -47,13 +54,14 @@ const createTweetController = (req, res) => __awaiter(void 0, void 0, void 0, fu
 exports.createTweetController = createTweetController;
 const updateTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedTweet = req.body;
+    console.log(updatedTweet);
     try {
-        const update = yield (0, tweet_repositories_1.updateTweetRepo)(updatedTweet.tweetid, updatedTweet);
-        if (update) {
-            res.status(200).json({ data: 'Tweet Update Successful' });
+        const success = yield (0, tweet_repositories_1.updateTweetRepo)(updatedTweet.tweetid, updatedTweet);
+        if (success) {
+            res.status(200).json({ data: "Tweet Updated" });
         }
         else {
-            res.status(500).json({ error: "Tweet Updated  Failed" });
+            res.status(500).json({ error: "Tweet Not Updated" });
         }
     }
     catch (error) {
@@ -63,14 +71,14 @@ const updateTweetController = (req, res) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.updateTweetController = updateTweetController;
 const deleteTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const tweetId = req.query.tweetId;
+    const tweetId = req.params.tweetId;
     try {
-        const sucess = yield (0, tweet_repositories_1.deleteTweetRepo)(tweetId);
-        if (sucess) {
-            res.status(200).json({ data: 'Tweet deleted' });
+        const success = yield (0, tweet_repositories_1.deleteTweetRepo)(tweetId);
+        if (success) {
+            res.status(200).json({ data: "Tweet Deleted" });
         }
         else {
-            res.status(500).json({ error: "Not Unable to delete tweet" });
+            res.status(500).json({ error: "Tweet Not Deleted" });
         }
     }
     catch (error) {

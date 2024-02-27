@@ -8,7 +8,7 @@ const tweetRouter = Router();
 tweetRouter.get("/:tweetId",getTweetController)
 // tweetRouter.get("/:",getAllTweetsController)
 tweetRouter.post("/",createTweetController)
-tweetRouter.delete("/:tweetId",deleteTweetController)
+tweetRouter.delete("/:userId",deleteTweetController)
 tweetRouter.put("/",updateTweetController)
 
 

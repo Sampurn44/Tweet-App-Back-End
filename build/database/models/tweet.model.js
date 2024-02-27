@@ -30,5 +30,5 @@ const tweetSchema = new mongoose_1.Schema({
     content: { type: String, default: "" },
     createdAt: { type: String, required: true },
 });
-const TweetModel = mongoose_1.default.model('TweetModel', tweetSchema);
+const TweetModel = mongoose_1.default.model("TweetModel", tweetSchema);
 exports.default = TweetModel;

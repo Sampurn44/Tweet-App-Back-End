@@ -1,4 +1,4 @@
-import mongoose, {Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 import { IUserInterface } from "../interface/user.interface";
 
 const userSchema = new Schema<IUserInterface>({
@@ -7,11 +7,10 @@ const userSchema = new Schema<IUserInterface>({
     firstName: { type: String, default: "User" },
     lastName: { type: String, default: "Name" },
     email: {
-        type: String, 
+        type: String,
         required: true,
         createdAt: { type: String, required: true },
     },
-
 });
 
 const UserModel = mongoose.model<IUserInterface>("UserModel", userSchema);

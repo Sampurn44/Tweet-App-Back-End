@@ -7,78 +7,67 @@ import { getUserRepo,
 import { IUserInterface } from "../database/interface/user.interface";
 
 export const getUserController = async (req: Request, res: Response) => {
-
     const userId = req.params.userId as string;
     console.log(userId)
-
+  
     try {
-
-        const user = await getUserRepo(userId);
-        if (user) {
-            res.status(200).json({ data: user });
-
-        }
-        else {
-            res.status(500).json({ error: "User Not Found" });
-        }
+      const user = await getUserRepo(userId);
+      if (user) {
+        res.status(200).json({ data: user });
+      } else {
+        res.status(500).json({ error: "User Not Found" });
+      }
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: error });
+      console.log(error);
+      res.status(500).json({ error: error });
     }
-}
-export const createUserController = async (req: Request, res: Response) => {
-
+  };
+  
+  export const createUserController = async (req: Request, res: Response) => {
     const user: IUserInterface = req.body;
-
+  
     try {
-
-        const sucess = await createUserRepo(user)
-        if (sucess) {
-            res.status(200).json({ data: user });
-
-        }
-        else {
-            res.status(500).json({ error: "Unable to create new user" });
-        }
+      const success = await createUserRepo(user);
+      if (success) {
+        res.status(200).json({ data: user });
+      } else {
+        res.status(500).json({ error: "User Not Created" });
+      }
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: error });
+      console.log(error);
+      res.status(500).json({ error: error });
     }
-}
-export const updateUserController = async (req: Request, res: Response) => {
-
-    const updatedUser: IUserInterface = req.body;
-
-    try {
-
-        const update = await updateUserRepo(updatedUser.uid, updatedUser)
+  };
+  
+  export const updateUserController = async (req: Request, res: Response) => {
+      const updatedUser: IUserInterface = req.body;
+    
+      try {
+        const update = await updateUserRepo(updatedUser.uid,  updatedUser);
         if (update) {
-            res.status(200).json({ data: 'User Update Successful' });
-
+          res.status(200).json({ data: "User Updated" });
+        } else {
+          res.status(500).json({ error: "User Not Updated" });
         }
-        else {
-            res.status(500).json({ error: "User Updated  Failed" });
-        }
-    } catch (error) {
+      } catch (error) {
         console.log(error);
         res.status(500).json({ error: error });
-    }
-}
-export const deleteUserController = async (req: Request, res: Response) => {
-
-    const userId = req.query.userId as string;
-
-    try {
-
-        const sucess = await deleteUserRepo(userId);
-        if (sucess) {
-            res.status(200).json({ data: 'User deleted' });
+      }
+    };
+  
+    export const deleteUserController = async (req: Request, res: Response) => {
+      const userId = req.params.userId as string;
+    
+      try {
+        const success = await deleteUserRepo(userId);
+        if (success) {
+          res.status(200).json({ data: "User Deleted" });
+        } else {
+          res.status(500).json({ error: "User Not Deleted" });
         }
-        else {
-            res.status(500).json({ error: "Not Unable to delete user" });
-        }
-    } catch (error) {
+      } catch (error) {
         console.log(error);
-        res.status(500).json({ 'error': error });
-    }
-}
+        res.status(500).json({ error: error });
+      }
+    };
+    

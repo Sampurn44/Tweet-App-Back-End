@@ -29,7 +29,7 @@ if(!mongodbURI) {
     console.error("Mongo URI not defined");
     process.exit(1);
 }
-mongoose.connect(mongodbURI,{}).then(()=>{console.log("Mongoose connected")
+mongoose.connect(mongodbURI,{}).then(()=>{console.log("MongoDB connected")
 }).catch((error)=>{console.log(error)});
 //start the server
 try {

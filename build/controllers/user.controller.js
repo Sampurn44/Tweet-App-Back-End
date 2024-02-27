@@ -32,12 +32,12 @@ exports.getUserController = getUserController;
 const createUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.body;
     try {
-        const sucess = yield (0, user_repositories_1.createUserRepo)(user);
-        if (sucess) {
+        const success = yield (0, user_repositories_1.createUserRepo)(user);
+        if (success) {
             res.status(200).json({ data: user });
         }
         else {
-            res.status(500).json({ error: "Unable to create new user" });
+            res.status(500).json({ error: "User Not Created" });
         }
     }
     catch (error) {
@@ -51,10 +51,10 @@ const updateUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const update = yield (0, user_repositories_1.updateUserRepo)(updatedUser.uid, updatedUser);
         if (update) {
-            res.status(200).json({ data: 'User Update Successful' });
+            res.status(200).json({ data: "User Updated" });
         }
         else {
-            res.status(500).json({ error: "User Updated  Failed" });
+            res.status(500).json({ error: "User Not Updated" });
         }
     }
     catch (error) {
@@ -64,19 +64,19 @@ const updateUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.updateUserController = updateUserController;
 const deleteUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
     try {
-        const sucess = yield (0, user_repositories_1.deleteUserRepo)(userId);
-        if (sucess) {
-            res.status(200).json({ data: 'User deleted' });
+        const success = yield (0, user_repositories_1.deleteUserRepo)(userId);
+        if (success) {
+            res.status(200).json({ data: "User Deleted" });
         }
         else {
-            res.status(500).json({ error: "Not Unable to delete user" });
+            res.status(500).json({ error: "User Not Deleted" });
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ 'error': error });
+        res.status(500).json({ error: error });
     }
 });
 exports.deleteUserController = deleteUserController;

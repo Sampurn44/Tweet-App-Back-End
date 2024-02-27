@@ -29,7 +29,7 @@ if (!mongodbURI) {
     process.exit(1);
 }
 mongoose_1.default.connect(mongodbURI, {}).then(() => {
-    console.log("Mongoose connected");
+    console.log("MongoDB connected");
 }).catch((error) => { console.log(error); });
 //start the server
 try {
