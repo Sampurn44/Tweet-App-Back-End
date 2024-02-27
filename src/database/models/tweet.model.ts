@@ -1,14 +1,14 @@
-import mongoose,{Schema} from "mongoose";
-import { ITweetInterface } from "../interface/tweet.interface"; 
+import mongoose, { Schema } from "mongoose";
+import { ITweetInterface } from "../interface/tweet.interface";
 
-const TweetSchema= new Schema <ITweetInterface>({
+const tweetSchema = new Schema<ITweetInterface>({
 
-    tweetid: {type: String, required: true},
-    content: {type: String, default:''},
-    adminId:{type: String, required: true},
-    createdAt:{type: String, required: true},
-    
+    tweetid: { type: String, required: true },
+    adminId: { type: String, required: true },
+    content: { type: String, default: "" },
+    createdAt: { type: String, required: true },
+
 });
 
-const TweetModel= mongoose.model<ITweetInterface>('TweetModel',TweetSchema);
+const TweetModel = mongoose.model<ITweetInterface>('TweetModel', tweetSchema);
 export default TweetModel;

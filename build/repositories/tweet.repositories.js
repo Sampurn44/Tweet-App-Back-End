@@ -43,13 +43,8 @@ const deleteTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function*
 exports.deleteTweetRepo = deleteTweetRepo;
 const createTweetRepo = (tweet) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const created = yield tweet_model_1.default.create({ tweet });
-        if (created) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        yield tweet_model_1.default.create({ tweet });
+        return true;
     }
     catch (error) {
         console.log(error);

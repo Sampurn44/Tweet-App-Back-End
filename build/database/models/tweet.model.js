@@ -24,11 +24,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const TweetSchema = new mongoose_1.Schema({
+const tweetSchema = new mongoose_1.Schema({
     tweetid: { type: String, required: true },
-    content: { type: String, default: '' },
     adminId: { type: String, required: true },
+    content: { type: String, default: "" },
     createdAt: { type: String, required: true },
 });
-const TweetModel = mongoose_1.default.model('TweetModel', TweetSchema);
+const TweetModel = mongoose_1.default.model('TweetModel', tweetSchema);
 exports.default = TweetModel;

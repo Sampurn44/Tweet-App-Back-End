@@ -10,16 +10,17 @@ const app:Express = express();
 const server = http.createServer(app)
 
 
-dotenv.config();
-//Define the routes
-app.use("/api/v1",router);
-
 //Express Configuration
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended :true}));
 app.set("PORT",3000);
 app.set("BASE_URL","localhost");
+
+dotenv.config();
+//Define the routes
+app.use("/api/v1",router);
+
 
 //MongDB connection
 
@@ -29,7 +30,7 @@ if(!mongodbURI) {
     process.exit(1);
 }
 mongoose.connect(mongodbURI,{}).then(()=>{console.log("Mongoose connected")
-}).catch(err=>{console.log("Error connecting to Mongo")});
+}).catch((error)=>{console.log(error)});
 //start the server
 try {
     const port:Number = app.get("PORT");

@@ -12,19 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUserController = exports.updateUserController = exports.createUserController = exports.getUserController = void 0;
 const user_repositories_1 = require("../repositories/user.repositories");
 const getUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
+    console.log(userId);
     try {
         const user = yield (0, user_repositories_1.getUserRepo)(userId);
         if (user) {
-            res.status(200).json({ 'data': user });
+            res.status(200).json({ data: user });
         }
         else {
-            res.status(500).json({ 'error': "User Not Found" });
+            res.status(500).json({ error: "User Not Found" });
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ 'error': error });
+        res.status(500).json({ error: error });
     }
 });
 exports.getUserController = getUserController;
@@ -32,16 +33,16 @@ const createUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
     const user = req.body;
     try {
         const sucess = yield (0, user_repositories_1.createUserRepo)(user);
-        if (user) {
-            res.status(200).json({ 'data': sucess });
+        if (sucess) {
+            res.status(200).json({ data: user });
         }
         else {
-            res.status(500).json({ 'error': "User Not Unable to create new user" });
+            res.status(500).json({ error: "Unable to create new user" });
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ 'error': error });
+        res.status(500).json({ error: error });
     }
 });
 exports.createUserController = createUserController;
@@ -50,15 +51,15 @@ const updateUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const update = yield (0, user_repositories_1.updateUserRepo)(updatedUser.uid, updatedUser);
         if (update) {
-            res.status(200).json({ 'data': 'User Update Successful' });
+            res.status(200).json({ data: 'User Update Successful' });
         }
         else {
-            res.status(500).json({ 'error': "User Updated  Failed" });
+            res.status(500).json({ error: "User Updated  Failed" });
         }
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ 'error': error });
+        res.status(500).json({ error: error });
     }
 });
 exports.updateUserController = updateUserController;
@@ -67,10 +68,10 @@ const deleteUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const sucess = yield (0, user_repositories_1.deleteUserRepo)(userId);
         if (sucess) {
-            res.status(200).json({ 'data': 'User deleted' });
+            res.status(200).json({ data: 'User deleted' });
         }
         else {
-            res.status(500).json({ 'error': "Not Unable to delete user" });
+            res.status(500).json({ error: "Not Unable to delete user" });
         }
     }
     catch (error) {

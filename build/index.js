@@ -13,15 +13,15 @@ const routes_1 = __importDefault(require("./routes/routes"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
-dotenv_1.default.config();
-//Define the routes
-app.use("/api/v1", routes_1.default);
 //Express Configuration
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.set("PORT", 3000);
 app.set("BASE_URL", "localhost");
+dotenv_1.default.config();
+//Define the routes
+app.use("/api/v1", routes_1.default);
 //MongDB connection
 const mongodbURI = process.env.MONGO_DB_URI;
 if (!mongodbURI) {
@@ -30,7 +30,7 @@ if (!mongodbURI) {
 }
 mongoose_1.default.connect(mongodbURI, {}).then(() => {
     console.log("Mongoose connected");
-}).catch(err => { console.log("Error connecting to Mongo"); });
+}).catch((error) => { console.log(error); });
 //start the server
 try {
     const port = app.get("PORT");

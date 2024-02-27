@@ -28,22 +28,22 @@ export const deleteTweetRepo = async (tweetId: string): Promise<boolean> => {
 }
 export const createTweetRepo = async (tweet: ITweetInterface): Promise<boolean> => {
     try {
-        const created = await TweetModel.create({ tweet })
-        if (created) {
+        await TweetModel.create({ tweet })
             return true;
-        }
-        else {
-            return false;
-        }
+        
     }
     catch (error) {
         console.log(error);
         return false;
     }
 }
-export const updateTweetRepo = async (tweetId: string, updatedTweet: ITweetInterface): Promise<boolean> => {
+export const updateTweetRepo = async (
+    tweetId: string, 
+    updatedTweet: ITweetInterface
+    ): Promise<boolean> => {
     try {
-        const result = await TweetModel.findOneAndUpdate({tweetId:tweetId},updatedTweet ,{new:true})
+        const result = await TweetModel.findOneAndUpdate(
+            {tweetId:tweetId},updatedTweet ,{new:true});
         if (result) {
             return true;
         }

@@ -10,7 +10,7 @@ export const getUserRepo = async (userId: string): Promise<IUserInterface | null
         console.log(error);
         return null;
     }
-}
+};
 export const deleteUserRepo = async (userId: string): Promise<boolean> => {
     try {
         const deleted = await UserModel.findOneAndDelete({ uid: userId })
@@ -25,25 +25,20 @@ export const deleteUserRepo = async (userId: string): Promise<boolean> => {
         console.log(error);
         return false;
     }
-}
+};
 export const createUserRepo = async (user: IUserInterface): Promise<boolean> => {
     try {
-        const created = await UserModel.create({ user })
-        if (created) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        await UserModel.create(user);
+        return true;
     }
     catch (error) {
         console.log(error);
         return false;
     }
-}
+};
 export const updateUserRepo = async (userId: string, updatedUser: IUserInterface): Promise<boolean> => {
     try {
-        const result = await UserModel.findOneAndUpdate({uid:userId},updatedUser ,{new:true})
+        const result = await UserModel.findOneAndUpdate({ uid: userId }, updatedUser, { new: true })
         if (result) {
             return true;
         }
@@ -55,4 +50,4 @@ export const updateUserRepo = async (userId: string, updatedUser: IUserInterface
         console.log(error);
         return false;
     }
-}
+};

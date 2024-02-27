@@ -1,5 +1,5 @@
 import {Document} from "mongoose";
-export interface ITweetInterface extends Document{
+export interface ITweetInterface {
 
     tweetid: string,
     content: string,

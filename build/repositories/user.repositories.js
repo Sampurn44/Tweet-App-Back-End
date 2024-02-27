@@ -43,13 +43,8 @@ const deleteUserRepo = (userId) => __awaiter(void 0, void 0, void 0, function* (
 exports.deleteUserRepo = deleteUserRepo;
 const createUserRepo = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const created = yield user_model_1.default.create({ user });
-        if (created) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        yield user_model_1.default.create(user);
+        return true;
     }
     catch (error) {
         console.log(error);
