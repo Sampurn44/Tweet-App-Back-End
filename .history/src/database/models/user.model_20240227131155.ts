@@ -10,5 +10,4 @@ const UserSchema= new Schema <IUserInterface>({
     createdAt:{type: String, required: true},
 });
 
-const UserModel= mongoose.model<IUserInterface>('UserModel',UserSchema);
-export default UserModel;
+const UserModel= mongoose.model<IUserInterface>

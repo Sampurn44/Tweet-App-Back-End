@@ -6,7 +6,7 @@ export interface IUserInterface extends Document{
     firstName:string,
     lastName:string,
     email:string,
-    createdAt:string
+    createdAt:string;
 
 };
 

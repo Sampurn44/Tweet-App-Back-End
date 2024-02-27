@@ -8,7 +8,4 @@ const UserSchema= new Schema <IUserInterface>({
     lastName:{type: String, default: "Name"},
     email:{type: String, required: true},
     createdAt:{type: String, required: true},
-});
-
-const UserModel= mongoose.model<IUserInterface>('UserModel',UserSchema);
-export default UserModel;
+})

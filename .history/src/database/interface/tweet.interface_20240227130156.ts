@@ -1,7 +1,7 @@
 import {Document} from "mongoose";
-export interface IUserInterface extends Document{
+export interface ITweetInterface extends Document{
 
-    uid: string,
+    tweetid: string,
     tweets: string[],
     firstName:string,
     lastName:string,

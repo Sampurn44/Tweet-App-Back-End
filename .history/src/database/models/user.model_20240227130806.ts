@@ -4,11 +4,8 @@ import { IUserInterface } from "../interface/user.interface";
 const UserSchema= new Schema <IUserInterface>({
     uid: {type: String, required: true},
     tweets: {type: [String], default: []},
-    firstName:{type: String, default: "User"},
-    lastName:{type: String, default: "Name"},
+    firstName:{type: String, required: true},
+    lastName:{type: String, required: true},
     email:{type: String, required: true},
     createdAt:{type: String, required: true},
-});
-
-const UserModel= mongoose.model<IUserInterface>('UserModel',UserSchema);
-export default UserModel;
+})

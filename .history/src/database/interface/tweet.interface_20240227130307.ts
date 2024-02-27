@@ -5,6 +5,9 @@ export interface ITweetInterface extends Document{
     content: string,
     adminId:string,
     createdAt:string
-    
+    firstName:string,
+    lastName:string,
+    email:string,
+
 };
 
