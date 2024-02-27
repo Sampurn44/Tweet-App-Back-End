@@ -1,4 +1,4 @@
-import mongoose,{Document,Schema} from "mongoose";
+import mongoose,{Schema} from "mongoose";
 import { ITweetInterface } from "../interface/tweet.interface"; 
 
 const TweetSchema= new Schema <ITweetInterface>({
@@ -10,5 +10,5 @@ const TweetSchema= new Schema <ITweetInterface>({
     
 });
 
-const TweetModel= mongoose.model<ITweetInterface>('UserModel',TweetSchema);
+const TweetModel= mongoose.model<ITweetInterface>('TweetModel',TweetSchema);
 export default TweetModel;
