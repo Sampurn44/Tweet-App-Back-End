@@ -11,4 +11,4 @@ const TweetSchema= new Schema <ITweetInterface>({
 });
 
 const TweetModel= mongoose.model<ITweetInterface>('UserModel',TweetSchema);
-export default TweetSchema;
+export default TweetModel;
