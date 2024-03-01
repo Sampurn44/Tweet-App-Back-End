@@ -3,7 +3,7 @@ import userRouter from "./user.routes";
 import tweetRouter from "./tweet.routes";
 import helloRouter from "./hello.routes";
 
-const router =Router();
+const router = Router();
 
 router.use('/hello',helloRouter);
 router.use('/user',userRouter);

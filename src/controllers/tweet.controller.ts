@@ -49,8 +49,8 @@ export const updateTweetController = async (req: Request, res: Response) => {
   console.log(updatedTweet)
 
   try {
-    const success = await updateTweetRepo(updatedTweet.tweetid, updatedTweet);
-    if (success) {
+    const update = await updateTweetRepo(updatedTweet.tweetid, updatedTweet);
+    if (update) {
       res.status(200).json({ data: "Tweet Updated" });
     } else {
       res.status(500).json({ error: "Tweet Not Updated" });

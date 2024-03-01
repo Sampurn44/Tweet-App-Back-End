@@ -9,7 +9,7 @@ export const getTweetRepo = async (
       const tweet = await TweetModel.findOne({ tweetId: tweetId });
       return tweet;
     } catch (error) {
-      console.log(error);
+      console.log("Error in getTweetRepo:", error);
       return null;
     }
   };

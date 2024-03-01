@@ -56,8 +56,8 @@ const updateTweetController = (req, res) => __awaiter(void 0, void 0, void 0, fu
     const updatedTweet = req.body;
     console.log(updatedTweet);
     try {
-        const success = yield (0, tweet_repositories_1.updateTweetRepo)(updatedTweet.tweetid, updatedTweet);
-        if (success) {
+        const update = yield (0, tweet_repositories_1.updateTweetRepo)(updatedTweet.tweetid, updatedTweet);
+        if (update) {
             res.status(200).json({ data: "Tweet Updated" });
         }
         else {

@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { getUserRepo,
+import {
+     getUserRepo,
      createUserRepo, 
      deleteUserRepo, 
-     updateUserRepo 
+     updateUserRepo,
 } from "../repositories/user.repositories";
 import { IUserInterface } from "../database/interface/user.interface";
 

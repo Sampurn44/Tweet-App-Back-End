@@ -20,7 +20,7 @@ const getTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* ()
         return tweet;
     }
     catch (error) {
-        console.log(error);
+        console.log("Error in getTweetRepo:", error);
         return null;
     }
 });
