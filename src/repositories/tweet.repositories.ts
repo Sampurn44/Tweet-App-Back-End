@@ -6,7 +6,7 @@ export const getTweetRepo = async (
     tweetId: string
   ): Promise<ITweetInterface | null> => {
     try {
-      const tweet = await TweetModel.findOne({ tweetId: tweetId });
+      const tweet = await TweetModel.findOne({ tweetid: tweetId });
       return tweet;
     } catch (error) {
       console.log("Error in getTweetRepo:", error);
@@ -16,7 +16,7 @@ export const getTweetRepo = async (
   
   export const deleteTweetRepo = async (tweetId: string): Promise<boolean> => {
     try {
-      const deleted = await TweetModel.findOneAndDelete({ tweetId: tweetId });
+      const deleted = await TweetModel.findOneAndDelete({ tweetid: tweetId });
       if (deleted) {
         return true;
       } else {
@@ -46,7 +46,7 @@ export const getTweetRepo = async (
   ): Promise<boolean> => {
     try {
       const result = await TweetModel.findOneAndUpdate(
-        { tweetId: tweetId },
+        { tweetid: tweetId },
         updatedTweet,
         { new: true }
       );

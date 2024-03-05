@@ -16,7 +16,7 @@ exports.updateTweetRepo = exports.createTweetRepo = exports.deleteTweetRepo = ex
 const tweet_model_1 = __importDefault(require("../database/models/tweet.model"));
 const getTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const tweet = yield tweet_model_1.default.findOne({ tweetId: tweetId });
+        const tweet = yield tweet_model_1.default.findOne({ tweetid: tweetId });
         return tweet;
     }
     catch (error) {
@@ -27,7 +27,7 @@ const getTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getTweetRepo = getTweetRepo;
 const deleteTweetRepo = (tweetId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const deleted = yield tweet_model_1.default.findOneAndDelete({ tweetId: tweetId });
+        const deleted = yield tweet_model_1.default.findOneAndDelete({ tweetid: tweetId });
         if (deleted) {
             return true;
         }
@@ -54,7 +54,7 @@ const createTweetRepo = (tweet) => __awaiter(void 0, void 0, void 0, function* (
 exports.createTweetRepo = createTweetRepo;
 const updateTweetRepo = (tweetId, updatedTweet) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield tweet_model_1.default.findOneAndUpdate({ tweetId: tweetId }, updatedTweet, { new: true });
+        const result = yield tweet_model_1.default.findOneAndUpdate({ tweetid: tweetId }, updatedTweet, { new: true });
         if (result) {
             return true;
         }

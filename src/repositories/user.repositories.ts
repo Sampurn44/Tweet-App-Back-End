@@ -81,3 +81,23 @@ export const getUserRepo = async (
     }
   };
   
+  export const updateUserAndRemoveTweetIdRepo = async (
+    userId: string,
+    tweetId: string
+  ): Promise<boolean> => {
+    try {
+      const result = await UserModel.findOneAndUpdate(
+        { uid: userId },
+        { $pull: { tweets: tweetId } }
+      );
+      if (result) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+  

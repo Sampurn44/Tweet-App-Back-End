@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTweetController = exports.updateTweetController = exports.createTweetController = exports.getTweetController = void 0;
+exports.updateTweetController = exports.createTweetController = exports.deleteTweetController = exports.getTweetController = void 0;
 const tweet_repositories_1 = require("../repositories/tweet.repositories");
 const user_repositories_1 = require("../repositories/user.repositories");
 const getTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,6 +29,23 @@ const getTweetController = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getTweetController = getTweetController;
+const deleteTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const tweetId = req.params.tweetId;
+    try {
+        const success = yield (0, tweet_repositories_1.deleteTweetRepo)(tweetId);
+        if (success) {
+            res.status(200).json({ data: "Tweet Deleted" });
+        }
+        else {
+            res.status(500).json({ error: "Tweet Not Deleted" });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error });
+    }
+});
+exports.deleteTweetController = deleteTweetController;
 const createTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const tweet = req.body;
     try {
@@ -70,20 +87,3 @@ const updateTweetController = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.updateTweetController = updateTweetController;
-const deleteTweetController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const tweetId = req.params.tweetId;
-    try {
-        const success = yield (0, tweet_repositories_1.deleteTweetRepo)(tweetId);
-        if (success) {
-            res.status(200).json({ data: "Tweet Deleted" });
-        }
-        else {
-            res.status(500).json({ error: "Tweet Not Deleted" });
-        }
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({ error: error });
-    }
-});
-exports.deleteTweetController = deleteTweetController;

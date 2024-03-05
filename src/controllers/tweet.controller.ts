@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createTweetRepo, deleteTweetRepo, getTweetRepo, updateTweetRepo, } from "../repositories/tweet.repositories";
 
-import { updateUserWithTweetIdRepo } from "../repositories/user.repositories";
+import { updateUserAndRemoveTweetIdRepo, updateUserWithTweetIdRepo } from "../repositories/user.repositories";
 import { ITweetInterface } from "../database/interface/tweet.interface";
 
 export const getTweetController = async (req: Request, res: Response) => {
@@ -19,6 +19,24 @@ export const getTweetController = async (req: Request, res: Response) => {
     res.status(500).json({ error: error });
   }
 };
+
+
+export const deleteTweetController = async (req: Request, res: Response) => {
+  const tweetId = req.params.tweetId as string;
+
+  try {
+    const success = await deleteTweetRepo(tweetId);
+    if (success) {
+      res.status(200).json({ data: "Tweet Deleted" });
+    } else {
+      res.status(500).json({ error: "Tweet Not Deleted" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+};
+
 
 export const createTweetController = async (req: Request, res: Response) => {
   const tweet: ITweetInterface = req.body;
@@ -61,18 +79,3 @@ export const updateTweetController = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteTweetController = async (req: Request, res: Response) => {
-  const tweetId = req.params.tweetId as string;
-
-  try {
-    const success = await deleteTweetRepo(tweetId);
-    if (success) {
-      res.status(200).json({ data: "Tweet Deleted" });
-    } else {
-      res.status(500).json({ error: "Tweet Not Deleted" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: error });
-  }
-};
